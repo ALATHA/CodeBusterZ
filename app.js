@@ -19,6 +19,9 @@ app.use(session({secret: "busting code", cookie: {maxAge: 600000}, resave:true, 
 app.use(express.static("public"))
 app.use("/static", express.static("/"));
 
+var config = {
+	api_key : 'AIzaSyDj7hVHifbI0aIYWtQi9QIL1cGfMAiDOTQ'
+}
 app.get(['/', '/home'], function(req, res, next){
 	res.render('home');
 })
