@@ -6,6 +6,7 @@
 	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/map.css">
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 
 <body>
 	<div class="navbar navbar-fixed col-lg-12">
@@ -51,6 +52,7 @@
 				if (status == google.maps.DirectionsStatus.OK) {
 					// Display the route on the map.
 					directionsDisplay.setDirections(response);
+					$('#yourmap').html('<b>Your Location</b>  You are 5km away.');
 				}
 			});
 		}
