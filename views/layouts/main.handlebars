@@ -5,6 +5,7 @@
 	</head>
 	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/map.css">
 
 <body>
 	<div class="navbar navbar-fixed col-lg-12">
@@ -15,5 +16,25 @@
 
 	{{{body}}}
 	
+	<script type="text/javascript">
+		var myLocation = {lat: -33.9069413, lng: 18.41897119999};
+
+		function initMap() {
+			var map = new google.maps.Map(document.getElementById('map'), {
+				center: myLocation,
+				zoom: 15
+			});
+
+			// Create a marker and set its position.
+		    var marker = new google.maps.Marker({
+		      map: map,
+		      position: myLocation,
+		      title: 'You are here!'
+		    });
+		}
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDj7hVHifbI0aIYWtQi9QIL1cGfMAiDOTQ&callback=initMap">
+    </script>
 </body>
 </html>
