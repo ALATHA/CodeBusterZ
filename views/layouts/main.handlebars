@@ -5,10 +5,22 @@
 	</head>
 	
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/map.css">
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 
-<body>
+<body class="body">
+	<div class="navbar navbar-fixed panel panel-body col-lg-12">
+		<h1 class="col-lg-offset-5">
+			<a href="/">PROFCATOR</a>
+		</h1>
+	</div>
 
 	{{{body}}}
 	
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDj7hVHifbI0aIYWtQi9QIL1cGfMAiDOTQ&callback=initMap">
+    </script>
+    <script type="text/javascript" src='js/geolib.min.js'></script>
+    <script type="text/javascript" src="js/map_functions.js"></script>
 </body>
 </html>
