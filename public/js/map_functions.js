@@ -183,7 +183,6 @@ function showDirections (from_coords, to_coords) {
         map: map
       });
 
-      //alert( JSON.stringify(to_coords) + " " + JSON.stringify(from_coords) );
 
       // Set destination, origin and travel mode.
       var request = {
