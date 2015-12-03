@@ -37,97 +37,97 @@ var place_of_interest = [
         "longitude": "18.4200329"
     },
     {
-        "id": 17,
+        "id": 7,
         "description": "Philippi Village",
         "latitude": "-34.0011087",
         "longitude": "18.5585684"
     },
     {
-        "id": 18,
+        "id": 8,
         "description": "Athlone Library",
         "latitude": "-33.960746",
         "longitude": "18.502602"
     },
     {
-        "id": 19,
+        "id": 9,
         "description": "Khayelitsha Hospital",
         "latitude": "-34.0505559",
         "longitude": "18.6725241"
     },
     {
-        "id": 20,
+        "id": 10,
         "description": "Guga S'thebe",
         "latitude": "-33.9441175",
         "longitude": "18.5222143"
     },
     {
-        "id": 22,
+        "id": 11,
         "description": "london",
         "latitude": "-33.9069058",
         "longitude": "18.4183923"
     },
     {
-        "id": 23,
+        "id": 12,
         "description": "Manchester England",
         "latitude": "53.4723679",
         "longitude": "-2.363676"
     },
     {
-        "id": 24,
+        "id": 13,
         "description": "Iquitos, Peru - Amazon Rainforest",
         "latitude": "-3.75",
         "longitude": "-73.28"
     },
     {
-        "id": 26,
+        "id": 14,
         "description": "Zanzibar Harbour",
         "latitude": "-6.1545341",
         "longitude": "39.1904211"
     },
     {
-        "id": 28,
+        "id": 15,
         "description": "paris",
         "latitude": "48.886911",
         "longitude": "2.348383"
     },
     {
-        "id": 29,
+        "id": 16,
         "description": "Swaziland",
         "latitude": "-26.797996",
         "longitude": "31.028060"
     },
     {
-        "id": 31,
+        "id": 17,
         "description": "Washington D.C.",
         "latitude": "-77.1549966",
         "longitude": "38.8995319"
     },
     {
-        "id": 32,
+        "id": 18,
         "description": "Mexico City",
         "latitude": "-99.131992",
         "longitude": "19.433585"
     },
     {
-        "id": 33,
+        "id": 19,
         "description": "Rio de Janeiro",
         "latitude": "-22.9103552",
         "longitude": "-43.7285314"
     },
     {
-        "id": 34,
+        "id": 20,
         "description": "durban",
         "latitude": "-29.816994",
         "longitude": "30.903916"
     },
     {
-        "id": 35,
+        "id": 21,
         "description": "Egypt Pyramids Tours ",
         "latitude": "-33.9069526",
         "longitude": "18.4189372"
     },
     {
-        "id": 39,
+        "id": 22,
         "description": "Philippi ,Cape Town",
         "latitude": "-34.008427",
         "longitude": "18.599282"
@@ -147,16 +147,21 @@ function getMyLocation (cb) {
 	navigator.geolocation.getCurrentPosition(cb);
 }
 
+var loc_elem = document.getElementById('loc_elem');
+
 var myLocation = {lat: -33.9069413, lng: 18.41897119999};
 
-getMyLocation(function(myLocat){
-	myLocation = myLocat;
-});
+var shareLocationButton = document.getElementById('shareLocation');
+
+shareLocationButton.addEventListener('click', function(){
+	myLocation = loc_elem.value;
+})
 
 var distance = getDistance(myLocation, myDestination);
+var map;
 
 function initMap() {
-	var map = new google.maps.Map(document.getElementById('map'), {
+	map = new google.maps.Map(document.getElementById('map'), {
 		center: myLocation,
 		zoom: 15,
 		scrollwheel : false
@@ -168,25 +173,74 @@ function initMap() {
       position: myLocation,
       title: 'You are here!'
     });
-
-	var directionsDisplay = new google.maps.DirectionsRenderer({
-		map: map
-	});
-
-	// Set destination, origin and travel mode.
-	var request = {
-		destination: myDestination,
-		origin: myLocation,
-		travelMode: google.maps.TravelMode.WALKING
-	};
-
-	// Pass the directions request to the directions service.
-	var directionsService = new google.maps.DirectionsService();
-	directionsService.route(request, function(response, status) {
-		if (status == google.maps.DirectionsStatus.OK) {
-			// Display the route on the map.
-			directionsDisplay.setDirections(response);
-			$('#yourmap').html('<b>Your Location</b>  You are ' + distance + ' away.');
-		}
-	});
 }
+
+var markers = [];
+
+function showDirections (from_coords, to_coords) {
+
+      var directionsDisplay = new google.maps.DirectionsRenderer({
+        map: map
+      });
+
+      //alert( JSON.stringify(to_coords) + " " + JSON.stringify(from_coords) );
+
+      // Set destination, origin and travel mode.
+      var request = {
+        destination: to_coords,
+        origin:  {lat : Number(from_coords.latitude), lng :  Number(from_coords.longitude)},
+        travelMode: google.maps.TravelMode.WALKING
+      };
+
+      // Pass the directions request to the directions service.
+      var directionsService = new google.maps.DirectionsService();
+
+      directionsService.route(request, function(response, status) {
+        
+        alert(status);
+
+        if (status == google.maps.DirectionsStatus.OK) {
+          // Display the route on the map.
+          directionsDisplay.setDirections(response);
+        }
+      });
+}
+
+$(document).ready(function() {
+
+    document.getElementById('findPlaces').addEventListener('click', function(){
+
+        $('div[name=places]').removeClass('hidden');
+
+        $('input').click(function(event) {
+
+            var index_of_place_in_arr = event.target.value-1;
+
+            var dest = place_of_interest[index_of_place_in_arr],
+                dest_coords = {latitude : Number(dest.latitude), longitude : Number(dest.longitude)};
+            
+            /*    
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: myLocation,
+                zoom: 10,
+                scrollwheel : false
+            });
+            */
+
+            var marker1 = new google.maps.Marker({
+                position: myLocation,
+                map: map,
+                title : 'You are here!'
+            });
+
+            var marker2 = new google.maps.Marker({
+                position: {lat: Number(dest.latitude), lng: Number(dest.longitude)},
+                map: map,
+                title : dest.description
+            });
+
+            showDirections(dest_coords, myLocation);
+
+        });
+    });
+});

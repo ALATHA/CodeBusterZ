@@ -2,25 +2,54 @@
 
 	<div class="panel panel-info col-lg-offset-2 col-lg-8">
 		<div class="panel-body">
-			The app is about finding your friends location and distance from where you are at that particular time.It also helps you locate your places of interest within the area you are situated in.You will always find your favourite places within a very short period of time and you don't need to even call them,you just see them in your cellphone.
+			<div class="btn-group col-lg-offset-2 col-lg-8">
+				<a class="btn btn-info" href="#">Find Friends</a>
+				<a class="btn btn-warning" id="findPlaces" href="#">Find Places</a>
+				<a class="btn btn-danger" id="shareLocation" href="#">Share my location</a>
+			</div>
 		</div>
 	</div>
+	<div class="container row">
+			<div name="places" class="hidden panel panel-warning panel-body col-lg-3">
+				<table class="table">
+	                <thead>
+	                    <tr>
+	                        <th>
 
-	<div class="panel panel-default col-lg-offset-2 col-lg-8">
-		<div class="panel-heading" id="yourmap">
-			<b>Your Location</b>
-		</div>
-		<div class="panel-body" id="map">
-		</div>
+	                        </th>
+	                        <th>
+	                            Name
+	                        </th>
+	                    </tr>
+	                </thead>
+	                <tbody id="locations">
+                    	{{#each places}}
+	                        <tr>
+	                            <td>
+	                                <input type="radio" id="{{this.id}}" name="selected" value="{{this.id}}">
+	                            </td>
+	                            <td>
+	                                {{this.description}}
+	                            </td>
+	                        </tr>
+                        {{/each}}
+	                </tbody>
+	        </table>
+			</div>
+
+			<div class="panel panel-default col-lg-9">
+				<div class="panel-heading" id="yourmap">
+					<b>Your Location</b>
+				</div>
+				<div class="panel-body" id="map">
+				</div>
+			</div>
 	</div>
 
 	<div class="panel panel-info col-lg-offset-2 col-lg-8">
 		<div class="panel-body">
-			<div class="btn-group col-lg-offset-2 col-lg-8">
-				<a class="btn btn-info" href="#">Find Friends</a>
-				<a class="btn btn-warning" href="#">Find Places</a>
-				<a class="btn btn-danger" href="#">Share my location</a>
-			</div>
+			The app is about finding your friends location and distance from where you are at that particular time.It also helps you locate your places of interest within the area you are situated in.You will always find your favourite places within a very short period of time and you don't need to even call them,you just see them in your cellphone.
 		</div>
 	</div>
+
 </div>
