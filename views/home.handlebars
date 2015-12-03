@@ -5,12 +5,13 @@
 			<div class="btn-group col-lg-offset-2 col-lg-8">
 				<a class="btn btn-info" href="#">Find Friends</a>
 				<a class="btn btn-warning" id="findPlaces" href="#">Find Places</a>
-				<a class="btn btn-danger" id="shareLocation" href="#">Share my location</a>
-			</div>
+{{!-- 				<a class="btn btn-danger" id="shareLocation" href="#">Share my location</a>
+ --}}			</div>
 		</div>
 	</div>
 	<div class="container row">
-			<div name="places" class="hidden panel panel-warning panel-body col-lg-3">
+		<div class="panel panel-warning panel-body col-lg-3">
+			<div name="places" class="hidden">
 				<table class="table">
 	                <thead>
 	                    <tr>
@@ -34,16 +35,18 @@
 	                        </tr>
                         {{/each}}
 	                </tbody>
-	        </table>
+		        </table>
 			</div>
 
-			<div class="panel panel-default col-lg-9">
-				<div class="panel-heading" id="yourmap">
-					<b>Your Location</b>
-				</div>
-				<div class="panel-body" id="map">
-				</div>
+		</div>
+
+		<div class="panel panel-default col-lg-9">
+			<div class="panel-heading" id="yourmap">
+				<b>Your Location</b>
 			</div>
+			<div class="panel-body" id="map">
+			</div>
+		</div>
 	</div>
 
 	<div class="panel panel-info col-lg-offset-2 col-lg-8">
