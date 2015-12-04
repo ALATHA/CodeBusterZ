@@ -151,7 +151,7 @@ var friends = [
         "id": 3,
         "description": "Lwando",
         "latitude": "-33.9069389",
-        "longitude": "18.4189952"
+        "longitude": "18.4989952"
     },
     {
         "id": 4,
@@ -237,6 +237,11 @@ $(document).ready(function() {
 
         $('div[name=places]').removeClass('hidden');
 
+        // getMyLocation(function(location){
+        //     $('input[name=longitude]').value = location.coords.longitude;
+        //     $('input[name=latitude]').value = location.coords.latitude;
+        // });
+
         $('input').click(function(event) {
 
             var index_of_place_in_arr = event.target.value-1;
@@ -261,7 +266,6 @@ $(document).ready(function() {
                 dest_coords = {lat : Number(dest.latitude), lng : Number(dest.longitude)};
 
             showDirections(myLocation, dest_coords);
-
         });
     });
 });
