@@ -3,7 +3,7 @@
 	<div class="panel panel-info col-lg-offset-2 col-lg-8">
 		<div class="panel-body">
 			<div class="btn-group col-lg-offset-2 col-lg-8">
-				<a class="btn btn-info" href="#">Find Friends</a>
+				<a class="btn btn-info" id="findFriends" href="#">Find Friends</a>
 				<a class="btn btn-warning" id="findPlaces" href="#">Find Places</a>
 {{!-- 				<a class="btn btn-danger" id="shareLocation" href="#">Share my location</a>
  --}}			</div>
@@ -25,6 +25,32 @@
 	                </thead>
 	                <tbody id="locations">
                     	{{#each places}}
+	                        <tr>
+	                            <td>
+	                                <input type="radio" id="{{this.id}}" name="selected" value="{{this.id}}">
+	                            </td>
+	                            <td>
+	                                {{this.description}}
+	                            </td>
+	                        </tr>
+                        {{/each}}
+	                </tbody>
+		        </table>
+			</div>
+			<div name="friends" class="hidden">
+				<table class="table">
+	                <thead>
+	                    <tr>
+	                        <th>
+
+	                        </th>
+	                        <th>
+	                            Name
+	                        </th>
+	                    </tr>
+	                </thead>
+	                <tbody id="locations">
+                    	{{#each friends}}
 	                        <tr>
 	                            <td>
 	                                <input type="radio" id="{{this.id}}" name="selected" value="{{this.id}}">

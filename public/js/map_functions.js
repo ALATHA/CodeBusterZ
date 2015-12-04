@@ -132,7 +132,40 @@ var place_of_interest = [
         "latitude": "-34.008427",
         "longitude": "18.599282"
     }
-]
+];
+
+var friends = [
+    {
+        "id": 1,
+        "description": "Lusanda",
+        "latitude": "-33.8944396",
+        "longitude": "18.589829899999998"
+    },
+    {
+        "id": 2,
+        "description": "Zandile",
+        "latitude": "-33.9095955",
+        "longitude": "18.4181334"
+    },
+    {
+        "id": 3,
+        "description": "Lwando",
+        "latitude": "-33.9069389",
+        "longitude": "18.4189952"
+    },
+    {
+        "id": 4,
+        "description": "Ncumisa",
+        "latitude": "-33.9071812433221",
+        "longitude": "18.418371068948744"
+    },
+    {
+        "id": 5,
+        "description": "Siyathemba",
+        "latitude": "-33.9053469",
+        "longitude": "18.4198553"
+    }
+];
 
 function getDistance(my_loc, my_destination){
 	var distance = geolib.getDistance(
@@ -211,17 +244,21 @@ $(document).ready(function() {
             var dest = place_of_interest[index_of_place_in_arr],
                 dest_coords = {lat : Number(dest.latitude), lng : Number(dest.longitude)};
 
-            // var marker1 = new google.maps.Marker({
-            //     position: myLocation,
-            //     map: map,
-            //     title : 'You are here!'
-            // });
+            showDirections(myLocation, dest_coords);
 
-            // var marker2 = new google.maps.Marker({
-            //     position: dest_coords,
-            //     map: map,
-            //     title : dest.description
-            // });
+        });
+    });
+
+    document.getElementById('findFriends').addEventListener('click', function(){
+
+        $('div[name=friends]').removeClass('hidden');
+
+        $('input').click(function(event) {
+
+            var index_of_place_in_arr = event.target.value-1;
+
+            var dest = friends[index_of_place_in_arr],
+                dest_coords = {lat : Number(dest.latitude), lng : Number(dest.longitude)};
 
             showDirections(myLocation, dest_coords);
 

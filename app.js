@@ -158,8 +158,42 @@ var place_of_interest = [
     }
 ];
 
+var friends = [
+    {
+        "id": 1,
+        "description": "Lusanda",
+        "latitude": "-33.8944396",
+        "longitude": "18.589829899999998"
+    },
+    {
+        "id": 2,
+        "description": "Zandile",
+        "latitude": "-33.9095955",
+        "longitude": "18.4181334"
+    },
+    {
+        "id": 3,
+        "description": "Lwando",
+        "latitude": "-33.9069389",
+        "longitude": "18.4189952"
+    },
+    {
+        "id": 4,
+        "description": "Ncumisa",
+        "latitude": "-33.9071812433221",
+        "longitude": "18.418371068948744"
+    },
+    {
+        "id": 5,
+        "description": "Siyathemba",
+        "latitude": "-33.9053469",
+        "longitude": "18.4198553"
+    }
+];
+
 app.get(['/', '/home'], function(req, res, next){
-	res.render('home', {places : place_of_interest});
+	res.render('home', {places : place_of_interest,
+        friends : friends});
 });
 
 app.get('/f', function(req, res, next){
