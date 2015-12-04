@@ -28,4 +28,12 @@ $(document).ready(function() {
 			var index_of_place_in_arr = event.target.value-1;
 		});
 	});
+
+	document.getElementById('findFriends').addEventListener('click', function(){
+		$('div[name=friends]').removeClass('hidden');
+		$('input').click(function(event) {
+			/* Act on the event */
+			var index_of_place_in_arr = event.target.value-1;
+		});
+	});
 });
