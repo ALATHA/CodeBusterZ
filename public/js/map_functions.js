@@ -151,12 +151,6 @@ var loc_elem = document.getElementById('loc_elem');
 
 var myLocation = {lat: -33.9069413, lng: 18.41897119999};
 
-var shareLocationButton = document.getElementById('shareLocation');
-
-shareLocationButton.addEventListener('click', function(){
-	myLocation = loc_elem.value;
-})
-
 var distance = getDistance(myLocation, myDestination);
 var map;
 
@@ -167,12 +161,14 @@ function initMap() {
 		scrollwheel : false
 	});
 
-	// Create a marker and set its position.
-    var marker = new google.maps.Marker({
-      map: map,
-      position: myLocation,
-      title: 'You are here!'
-    });
+	getMyLocation(function(location){
+        // Create a marker and set its position.
+        var marker = new google.maps.Marker({
+          map: map,
+          position: {lat : location.coords.latitude, lng : location.coords.longitude},
+          title: 'You are here!'
+        });
+    })
 }
 
 var markers = [];
@@ -187,7 +183,7 @@ function showDirections (from_coords, to_coords) {
       // Set destination, origin and travel mode.
       var request = {
         destination: to_coords,
-        origin:  {lat : Number(from_coords.latitude), lng :  Number(from_coords.longitude)},
+        origin: from_coords,
         travelMode: google.maps.TravelMode.WALKING
       };
 
@@ -195,9 +191,6 @@ function showDirections (from_coords, to_coords) {
       var directionsService = new google.maps.DirectionsService();
 
       directionsService.route(request, function(response, status) {
-        
-        alert(status);
-
         if (status == google.maps.DirectionsStatus.OK) {
           // Display the route on the map.
           directionsDisplay.setDirections(response);
@@ -216,29 +209,21 @@ $(document).ready(function() {
             var index_of_place_in_arr = event.target.value-1;
 
             var dest = place_of_interest[index_of_place_in_arr],
-                dest_coords = {latitude : Number(dest.latitude), longitude : Number(dest.longitude)};
-            
-            /*    
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: myLocation,
-                zoom: 10,
-                scrollwheel : false
-            });
-            */
+                dest_coords = {lat : Number(dest.latitude), lng : Number(dest.longitude)};
 
-            var marker1 = new google.maps.Marker({
-                position: myLocation,
-                map: map,
-                title : 'You are here!'
-            });
+            // var marker1 = new google.maps.Marker({
+            //     position: myLocation,
+            //     map: map,
+            //     title : 'You are here!'
+            // });
 
-            var marker2 = new google.maps.Marker({
-                position: {lat: Number(dest.latitude), lng: Number(dest.longitude)},
-                map: map,
-                title : dest.description
-            });
+            // var marker2 = new google.maps.Marker({
+            //     position: dest_coords,
+            //     map: map,
+            //     title : dest.description
+            // });
 
-            showDirections(dest_coords, myLocation);
+            showDirections(myLocation, dest_coords);
 
         });
     });
