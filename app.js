@@ -196,7 +196,17 @@ app.get(['/', '/home'], function(req, res, next){
         friends : friends});
 });
 
-app.get('/f', function(req, res, next){
+app.post(['/', '/home'], function(req, res, next){
+    
+    var inputData = JSON.stringify(JSON.parse(req.body));
+
+    var place = {
+        id : place_of_interest.length,
+        description : inputData.place,
+        latitude: inputData.latitude,
+        longitude: inputData.longitude
+    }
+
 	res.render('find_places');
 });
 

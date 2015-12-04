@@ -12,6 +12,16 @@
 	<div class="container row">
 		<div class="panel panel-warning panel-body col-lg-3">
 			<div name="places" class="hidden">
+				<form name="newPlace" class="new-place">
+					Name : <input type="text" name="place">
+					<label hidden>
+						Longitude : <input type="text" name="longitude">
+					</label>
+					<label hidden>
+						Latitude : <input type="text" name="latitude">
+					</label>
+					<input type="submit" value="Add" class="btn btn-default">
+				</form>
 				<table class="table">
 	                <thead>
 	                    <tr>
@@ -27,7 +37,7 @@
                     	{{#each places}}
 	                        <tr>
 	                            <td>
-	                                <input type="radio" id="{{this.id}}" name="selected" value="{{this.id}}">
+	                                <input type="checkbox" id="{{this.id}}" name="selected" value="{{this.id}}">
 	                            </td>
 	                            <td>
 	                                {{this.description}}
@@ -53,7 +63,7 @@
                     	{{#each friends}}
 	                        <tr>
 	                            <td>
-	                                <input type="radio" id="{{this.id}}" name="selected" value="{{this.id}}">
+	                                <input type="checkbox" id="{{this.id}}" name="selected" value="{{this.id}}">
 	                            </td>
 	                            <td>
 	                                {{this.description}}
