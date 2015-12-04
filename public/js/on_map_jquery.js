@@ -26,16 +26,6 @@ $(document).ready(function() {
 		$('input').click(function(event) {
 			/* Act on the event */
 			var index_of_place_in_arr = event.target.value-1;
-
-			var marker = new google.maps.Marker({
-			    position: {lat: -33.9069413, lng: 18.49897119999},
-			    map: map
-			});
-		});
-
-		$('#locations').click(function(event) {
-			/* Act on the event */
-			// alert(JSONs.stringify(place_of_interest[event.target.id-1]));
 		});
 	});
 });
