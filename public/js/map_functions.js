@@ -1,4 +1,4 @@
-var myDestination = {lat: -33.9069413, lng: 18.49897119999};
+// var myDestination = {lat: -33.9069413, lng: 18.49897119999};
 var place_of_interest = [
     {
         "id": 1,
@@ -151,7 +151,7 @@ var loc_elem = document.getElementById('loc_elem');
 
 var myLocation = {lat: -33.9069413, lng: 18.41897119999};
 
-var distance = getDistance(myLocation, myDestination);
+// var distance = getDistance(myLocation, myDestination);
 var map;
 
 function initMap() {
